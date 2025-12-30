@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aya ❤️ Ica – New Year 2026</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fredoka+One&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(180deg, #FFE5D1, #FFB07C);
+        color: #5A2A00;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    h1, h2 {
+        font-family: 'Fredoka One', cursive;
+        color: #FF6E2E;
+    }
+
+    /* HERO */
+    .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        margin-bottom: 5px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        max-width: 550px;
+    }
+
+    /* FLOATING HEARTS */
+    .heart {
+        position: absolute;
+        color: #FF6E2E;
+        font-size: 20px;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-150px); opacity: 0; }
+    }
+
+    /* SECTIONS */
+    section {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.6);
+        padding: 25px;
+        border-radius: 20px;
+        line-height: 1.7;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+    }
+
+    /* TO-DO LIST */
+    .todo-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    .todo-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+        gap: 20px;
+    }
+
+    .todo-card {
+        background: rgba(255,255,255,0.7);
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        transition: 0.3s;
+        font-weight: 500;
+    }
+
+    .todo-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.9);
+    }
+
+    /* GALLERY 4:5 */
+    .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 15px;
+    }
+
+    .gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* RASIO FOTO */
+    object-fit: cover;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.5);
+    }
+
+    
+
+    .gallery div {
+        height: 160px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FF6E2E;
+        border: 2px dashed #FF6E2E;
+        font-weight: 600;
+    }
+
+    /* LOVE BUTTON */
+    .love-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 35px;
+        border-radius: 30px;
+        background: #FF6E2E;
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    .love-btn:hover {
+        transform: scale(1.07);
+        background: #ff8751;
+    }
+
+    /* POPUP MESSAGE */
+    .popup {
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: white;
+        padding: 30px 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        text-align: center;
+        transition: 0.3s;
+        z-index: 999;
+    }
+
+    .popup.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup h3 {
+        font-family: 'Fredoka One', cursive;
+        color: #FF6E2E;
+        font-size: 28px;
+    }
+
+    .close-btn {
+        margin-top: 20px;
+        padding: 10px 25px;
+        background: #FF6E2E;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+    }
+
+    /* MUSIC BUTTON */
+    .music-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #FF6E2E;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+        transition: 0.3s;
+        font-size: 14px;
+    }
+
+    .music-btn:hover {
+        transform: scale(1.1);
+        background: #ff8751;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+    <source src="E:\aya\Taylor Swift - So High School (Instrumental).mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎧 Musik: OFF</div>
+
+<script>
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.querySelector(".music-btn");
+    let musicOn = false;
+
+    function toggleMusic() {
+        if (musicOn) {
+            music.pause();
+            musicBtn.textContent = "🎧 Musik: OFF";
+            musicOn = false;
+        } else {
+            music.play();
+            musicBtn.textContent = "🎶 Musik: ON";
+            musicOn = true;
+        }
+    }
+
+    /* AUTOPLAY FIX → PLAY SETELAH KLIK / TOUCH PERTAMA */
+    document.addEventListener("click", () => {
+        music.play().catch(() => {});
+    }, { once: true });
+
+    document.addEventListener("touchstart", () => {
+        music.play().catch(() => {});
+    }, { once: true });
+</script>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>HAPPY NEW YEAR 2026, AYA SWIFTIES! 🍊</h1>
+    <p>I'm very lucky cause i meet you in swaraloka, orang tercantik & terspesial di hidup Ica.</p>
+</div>
+
+<!-- Floating Hearts -->
+<script>
+    function spawnHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "🧡";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = "100%";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }
+    setInterval(spawnHeart, 500);
+</script>
+
+<!-- THANK YOU -->
+<section>
+    <h2>Hey, Jingga Naraya Putri🧡</h2>
+    <div class="card">
+        Ehem ehem, agak cerita dikit gapapa ya? gatau panjang apa engga tpi ini isi hatiku yang aku sering ungkapin. 
+        Aya sendiri keknya juga udah tau storyline nya tapi Ica bakal ceritain lagi.
+        <br><br>
+        "Swaraloka". Iyaaa "Swaraloka", Aya sayang. Aku masi inget jelas, nama "Swaraloka" I will remember it in my memory forever.
+        <br><br>
+        Saturday, 21 June 2025 is a our starting point for us to meet at an event that you held, namely "Swaraloka".   
+        A person yang awalnya aku kira dia cewek sombong, cewek cuek, cewek dingin, cewek yang awalnya aku pikir cuma bertemu sesaat
+        ternyata dia sekarang jadi wanitaku. What a plot twist?!Σ(°ロ°)  
+        <br><br>
+        Emm sebenarnya tuh emg ak dari awal sama dia udh interest 
+        tapi dikit karena kirain dia tuh sombong mukanya and i thought she already have a "boyfriend". Tapi keknya engga deh? 
+        okay cerita sebenarnya aku diajak event ini buat jadi volunteer karena temanku. Awalnya sih gaada "slot" volunteer karena ada
+        "SESEORANG (mantan crush)"nya dia tapi gajadi karena ada halangan, jadi aku yang menggantikan si "Seseorang".
+        <br><br>
+        Thursday, 19 June 2025. Malam sebelum "Swaraloka" dimulai aku diminta untuk datang rapat sebelum event dimulai. Waktu awal dateng sama temen-temen volunteer
+        aku lihat ada cewek sombong, rambut bondol, cantik, lucu, tapi dia cuekkk!!!. 
+        Ohiya, my jobdesk as a crowd control and photobooth attendant.
+        Karena aku gatau apa yang harus dilakukan apa jobdeskku akhirnya aku tanya ke temanku apa aja yang harus dilakuin and then temanku mengirim 
+        word yang isinya tentang jobdesk what should i have to do during "Swaraloka". 
+        <br><br>
+        After i ended read my jobdesk assigment, "cewek sombong" itu suddenly
+        ask me about question. "kak, kamu sudah tahu kan apa aja yang bakal dilakuin besok?" "cewek bondol" itu bertanya ke aku. Aku gatau dia siapa,
+        namanya siapa, anak kelas apa, intinya dia tuh sapa anjir??? waktu aku liat dia udah ak cap sebagai "cewek sombong". Ternyata si "cewek sombong" itu 
+        event coordinator "Swaraloka". And i was like "kenapa baru sekarang ditanyain? kenapa ga daritadi woyyy??" keknya dia emang sombong deh.
+        Yauda waktu si "cewek sombong" ini ngejelasin jobdesk apa yang harus aku lakuin, cuma aku iyain doang, mengangguk ngangguk soalnya males liat dia.
+        Tapi keknya dia notice deh soalnya waktu liat mukanya tuh juga males ngejelasin.
+        <br><br>
+        Friday, 20 June 2025. Sore kita mulai gladi bersih di lembah tumpang tempat "Swaraloka" diadakan. At that time, i dont know why mataku selalu tertuju
+        pada si "cewek sombong". Padahal aku tau dia itu cuek, but she make me interest. my stare looking at her. Kita dibriefing buat jobdesknya masing masing.
+        karena aku baru pertama kali ke lembah tumpang, jadi aku disuru jalan-jalan keliling tempatnya sama kelompokmya si "cewek sombong" yang pada saat itu juga
+        aku masih belom tau namanya. Yauda siee aku akhirnya jalan jalan keliling candinya itu. 
+        <br><br>
+        I still clearly remember at that time, di atas jembatan, waktu aku mau jalan
+        someone say with me "eh itu Karina ya??". Siapa nich? jangan jangan cewek sombong itu?
+        <br><br>
+        (Who is calling me? is it her? nah ga mungkin). Nope. Aku salah. Ternyata yang ngajak ngomong beneran si "cewek sombong" itu dengan rambut bondolnya dia. 
+        Iyaaa benerrrr, tidak salah lagi itu dia si "cewek sombong" yang manggil aku. Apa nich? i kinda shock when she talked to me. You know what ay? pandangan
+        "cewek sombong" dipikiranku tiba tiba agak turun ternyata "dia" ga sombong sombong amat. 
+        <br><br>
+        Si "cewek sombong" menanyakan aku itu karina atau ga. Kenapa dia bisa tau?
+        ya karena aku pasang photocard karina dicasing hp ku makanya dia bisa tau. Maksudku, notice banget yaa si "cewek sombong" itu. Actually aku deg degan karena dia buat 
+        aku interest dikit and i say "iyaaa ini karina". We walked on the bridge while chatting, si "cewek sombong" itu nanya lagi "kamu suka aespa ya? favorite song mu apa?"
+        Wow? si "cewek sombong" itu ternyata fans aespa juga? 
+        <br><br>
+        I answer her question, "iyaa aku suka savage".
+        <br><br>
+        "kalau aku tuh suka Supernova, aku suka mommy giselle rambut pink"  wkwkwk i already know when she said that
+        her bias was mommy giselle karena ya keliatan woy. Apa gara gara bondolnya juga? gatau deh. That is my first moment talking each other with "cewek sombong"
+        <br><br>
+        Im very happy dia inisiatif buat aku ngajak duluan. Tapi tuh keliatan banget si "cewek sombong" sksd nya wkwkwkkw. Yauda kita cuma berbincang sebentar.
+        Waktu ada waktu luang, ak sama temanku duduk di jalanan candi. i see si "cewek sombong" itu dikit dikit. Pas dia ngilang aku nyari dia tuh lagi dimana sih.
+        Ohh ternyata dia lagi sama temennya. when she walk to the temple with her friend. She passed me, whosshhh begitu aja dengan muka sombongnya.
+        Aku cuma dilangkahin aja gitu? sambil ak liat dia but she not looking at me. Ya emang sih aku tuh sapa.
+        <br><br>
+        Ternyata pandanganku dengan label "cewek sombong" masih tidak turun kekekekek. Time to go home. Waktu jalan di parkiran, motorku sampingan sama motor scoopy.
+        Aku dah curiga, apa ini punya si "cewek sombong" ya? kek nya iya deh. DAN TERNYATA BENERAN PUNYA DIA GUSY. DIa mengarah ke motor yang ada disampingku juga,
+        she wear a brown jacket in front of me. Kek??? beneran ga ngomong sama sekali, ya waktu itu juga first time kenalan sie. Tapi minimal tuh ngomong "Pulang dulu yaa" 
+        engga woy masalahnya. Ini makin aku beranggapan kalau dia emang cewek sombong. 
+        <br><br>
+        Saturday, 21 June 2025, The day is come. The event namely "Swaraloka" is started. Waktu awal dateng pagi di gerbang pintu ada teman temannya dia disana. 
+        My eyes try to find her but seems she is not come yet? Aku agak sedih karena dia belom dateng. Not too that long, the yellow car come inside right in front of me. 
+        Ohh it must be her right? Iyapss it's really her. I am so happy when i saw her at that time. "Cewek sombong" dengan muka yang cemberut, rambut bondol yang bikin dia
+        makin lucu. There is one word inside my head, "Beauty". I still dont know her name but her friends call her "jingga".
+        <br><br>
+        "Jingga" yaa... Namanya cantik sesuai sama orangnya. Pandanganku ga bisa teralihkan, i steal a little stare on her wkwkwk. 
+        <br><br>
+        Kita disuruh ngangkat meja tenant. oh iya btw dia jobdesknya yang jaga tenant loh keren gak sie. Kita semua menuju ke candi sambil bawa tenant (except me). 
+        I steal a chance to take her a photo from behind meanwhile she walked in front of me with her tenant. Yashh berhasil. Cantikk. I'm getting more interest with her.
+        Briefing dimulai. We separated for our own jobdesk. Aku jaga photobooth. Luckily photobooth nya deket sama tenant si "cewek sombong". WOww?? Before the event start,
+        Aku sering nyamperin dia. Biasa ngobrol ngobrol gituu nanya tentang aespa karena kita sama sama suka aespa yeayyy. MAKASIH PHOTOCARD KARINA.
+        <br><br>
+        when we talked each other, aku lihat ada anak pdd yang lagi foto foto. ohh it is my chance buat ngajak dia foto muehhehehe. "Fotoin kita dong" smooth gak sih? 
+        terus si "cewek sombong" itu bertanya "Ayokkk mau gaya apa?". Hmmm aku ngajak dia gaya aespa sie aku cosplay karina dia cosplay mommy giselle karena itu biasnya dia.
+        I'm so happy, it is my first time foto sama "cewek somnbong". salting gusy. 
+        <br><br>
+        During the event im doin my job as a crowd control and photobooth attendant. Nyari pengunjung, ngarahin pengunjung ke photobooth yang lewat tenant si "cewek sombong" itu.
+        Kalau aku capek? ya tinggal istirahat di tenantnya "cewek sombong" sambil ngobrol ngobrol buat recharge energi wkwkwk. Oh we were sitting by the water beside the temple. jadi ada bebek 
+        sama orang yang lagi naek perahu. She grab her phone, "cewek sombong" ngevideo couple yang lagi naek perahu. 
+        <br><br>
+        "Pengen ga?" "Cewek sombong" ask me while she video, "pengen, when yah" wkkwkw when yahh bisa ngelakuin couple do. kita berbincang sambil melakukan pekerjaan kita. 
+        <br><br>
+        Isitrahat makan siang tiba. Kita makan siang di dalam ruangan, dengan batasan waktu yang sangat singkat. But i didn't see her? "Cewek sombong" itu ga ada disini. 
+        Dia gak makan apa ya? I finish my lunch earlier buat nyari "cewek sombong". Aku minta 1 makanannya ke temen buat aku bawain ke si "Cewek sombong". HMM apa dia lagi di tenant?
+        bener juga dia masih di tenant. Duduk sendirian diam sambil HP nan. Aku kek pangeran berkuda putih yang lagi menyelamatkan princess. 
+        <br><br>
+        "Ehhh kamu bawain aku makanan? Makasih banyakkk. Minumannya mana?" omg i forget the drink,cepet cepet aku ambil minuman buat si "cewek sombong"
+        <br><br>
+        i bring her drink and food, "nih buat kamu. jangan lupa makan woy lagi istirahat soalnya". aku khawatir, seems she overhelmed? i know what she feel. Dia jaga tenant dengan 
+        megang uang sebanyak itu. Dengan sistem pembayaran yang agak tricky. At least im doin my best for her. Kasian dia duduk sendirian gaada yang nemenin hiks.
+        <br><br>
+        Acara dimulai jam 14.00. Para cowok-cowok disuru ngangkat perabotan musik ke panggung candi karena akan dipake buat acara "Swaraloka". After acara gamelan selesai, aku ada waktu luang,
+        Agak disayangkan karena si "cewek sombong" bersebrangan denganku. agak sedih si karena gabisa nonton bareng ama "cewek sombong" padahal aku mo mepet sama dia. Yauda de akhirnya aku Foto
+        mumpung lagi disana kan kapan lagi. Its my firs time too ke lembah tumpang. Gede banget woy? capek juga nyari pengunjung dari ujung ke ujung.
+        <br><br>
+        "Swaraloka" finally done. cuz im tired me with my friends sitting down in gazebo. berempat kita duduk disana. 
+        <br><br>
+        "Buat yang udah selesai istirahatnya, tolong sampahnya yang berserakan dibuang ditempatnya yaa" suara HT ku bunyi. Aku tau suara ini, suara si "cewek sombong".
+        Biarin ahh, aku capek soalnya. While i take a rest, i see "her" lagi bersih bersih di daerah tenantnya. I looking at "her", cantik, "cewek sombong" yang buat aku interest after 3 years
+        gaada yang buat aku interest. But this is my first time there is someone who make me interest. Keknya dia notice aku deh? soalnya mata kita bertemu. Biarin dia bersih bersih sambil muka cemberutnya itu lucu soalnya.
+        <br><br>
+        Kita dipanggil di depan candi buat briefing selesai event "Swaraloka". Si "cewek sombong" ada disana. We wrap at 17.00 pm. waktu aku mo menuju ke parkiran buat pulang.
+        My stare looking at her. Kemana perginya dia? Kok tiba tiba ilang? padahal aku mo pamitan, at least i wanna say thank you to her cuz it can be my last meet with her.
+        I found her, but "she" kinda busy i think? Rambut bondol, muka cemberut, muka cuek, muka "cewek sombong" masih melekat padanya.
+        Yauda aku akhirnya pulang langsung sama temen temenku. Sedih si gabisa pamit ke dia karena dia "cewek sombong". Oh after event "Swaraloka" i follow her instagram, not only her
+        but also her friends. 
+        <br><br>
+        Saturday, 6 September 2025 at 19.55 pm. Hari dimana aku nge reply story instagram dia. Awal dimana aku ngerasa ada kesempatan buat chattingan sama dia. Karena iseng? Hmmm
+        engga juga, karena aku dari awal emg interest sama si "cewek sombong". 
+        <br><br>
+        "Mirip aku" reply ku ke story cowok K pop nya dia
+        <br><br>
+        "rill cuy, 11 2 milyar" she answer me at that time. wow? dia nge respon aku? Im very happy, dari sana kita chattingan bareng. 
+        <br><br>
+        Aku gamau manggil dia "jingga" seperti orang-orang. I wanna different so i call her "Aya". Iyaaa, "Aya" nama yang aku ambil dari namanya dia "NarAYA".
+        Cantik kan? "Aya". Dari sana kita sering chattingan. Aku semakin interest sama "Aya" waktu dia minta ditemenin soalnya dia dikunci dari luar rumah malem malem.
+        "Cewek sombong" i mean "Aya" minta aku buat jadi distraksinya dia karena saat itu jam setengah 1 pagi. Dia dikunci dari luar ditemenin sama kucing namanya Burjo.
+        <br><br>
+        Sialnya, Burjo malah meninggalkan lane yang berakhir dia sendirian. Aku seneng banget "Aya" jadiin aku tempat bicara, "Aya" jadiin aku tempat berlindung, even kita belom sedeket pada saat itu.
+        "AKU KEBELET PIPIS FER TAPI PINTUNYA GAK BISA DIBUKA AKU SEBEL" aya ngeroeng sepanjang malam. She really scare. Dia sampe udah pasrah karena tidak ada hilal orang rumah bangun buat bukain pintu rumah.
+        <br><br>
+        "Emang kamu gabisa manjat Jingga?" (sebelum aku memanggil dia Aya) bertanya dengan nada heran. "Gabisaaa, Kalo bisa manjat aku udah manjat sih dari tadi". Bener juga sih? gamungkin dia 
+        diluar daritadi kalau dia bisa manjat. We talk a lot dari pembahasan kuliah, kpop, anime,sampe hal hal yang absurd kita bicarakan agar "Aya" tidak takut. After a long time mamahnya "Aya" bangun bukain pintu.
+        01.11 am "cewek sombong" yang sekarang jadi wanitaku itu berterima kasih banyak ke aku karena udah ditemenin chattingan. Aku bener bener happy. "She" bring me my jotful back after a while.
+        Even "dia" udah masuk rumah, kita masih chattingan bahas nilai kuliah wkwkwk sampe jam 02.33 am. My pleasure for "her" karena udah nemenin chattingan. DIsitulah aku ngerasa kalau aku suka sama "dia".
+        <br><br>
+        We start a chat, mulai care satu sama lain, until Friday, 19 September 2025 sore hari is our first time calling instead of chatting. Soalnya aku tuh males waktu "Aya" mo vn. "Kenapa kita ga call aja?"
+        Ajakku ke "Aya". Finally kita call bareng until right now. Im happy kita udah mulai call, hubungan kita makin deket. I finally dare to ask you hang out. 
+        <br><br>
+        "Berdua doang?" "she" ask. "Iya berdoa doang? emang mo sama siapa lagi?" kan aku emang ngajaknya cuma berdua ya. Pun aku udah bilang ke "dia" kalau mau ngajak temennya juga gapapa but "she" wont it.
+        <br><br>
+        Thursday, 25 September 2025 at 19.44 pm. Hari dimana aku jemput "dia" dan hari pertama aku bertemu dengan "dia" secara langsung, just us, only us. I was nervous, aku takut aku jadi orang canggung.
+        Aku takut dia ga happy sama aku. Kita keluar pertama kalinya after event "Swaraloka". I was happy with her. I always ask her setelah kita bertemu "aku canggung gak? aku soalnya ngga kebiasaan kek gini".
+        "She" always say "engga kok kamu ngga canggung, kamu orangnya asik ica", yashhhh im very happy. Awalnya tuh aku gatau knapa aku dipanggil "Ica", kirain Ica yang dimeme babi ternyata engga. Jadi aku selama ibi salah tangkap
+        kalau dia manggil aku babi. syukurlah. Hubungan kita terus berlanjut sejak saat itu. Karena "dia" sering pulang ke rumah halamannya, aku punya rutinitas baru. Hari sabtu malem jam 9 mengantar ke stasiun.
+        Hari selasa malam jam setengah 8 aku jemput dia di stasiun. Im very happy "Aya". Until...
+        <br><br>
+        Saturday, 8 November 2025 at 21.52 pm sebelum mengantar "dia" ke stasiun. Aku memberanikan diriku to tell my truth that i ask "her" to be my girlfriend. Aku mengumpulkan niatku, karena aku menunggu momen yang pas buat jadiin "dia" pacarku
+        Aku deg deg-an bakal diterima gak ya, but i really confidence "she" will accept me muheheheheh. Hari itu "kami" berpacaran setelah 2 bulan kita pdkt. Selama perjalanan menuju stasiun "dia" masih ga nyangka kalau kita pacaran.
+        <br><br>
+        "ini beneran sekarang kita pacaran?" wkwkwkwkw pertanyaan yang pertama kali "dia" lontarkan ke aku waktu diatas motor karena masih ngga sepercaya itu. Aku juga ga sepercaya itu pacaran sama "dia" yang awalnya dari event "Swaraloka".
+        Akhirnya kita pacaran gusy. Aku happy banget banget bangetttt, i cannot say cuz right know "Aya" be my girlfriend. Kita jalani hari hari as a couple do wkwkkw, ngerangkai bunga, dating, olahraga bareng, so many activities yang kita lakukan.
+        <br><br>
+        Sunday, 30 November 2025 at 02.50 am, "Aya", aku bener bener sedih waktu kamu nyeritain masalah internalmu ke aku and then you say "that" word. Aya tahu? kata "itu" adalah kata yang paling aku benci, kata yang gamau aku denger sekalipun dari kamu. Tapi "Aya" dengan mudahnya ngomong 
+        kayak gitu didepanku sebelum kamu naek kereta. Aku suka "Aya" udah terbuka sama aku, pelan pelan terbuka sama aku, nyeritain masalah "Aya". Aku tau masalah itu ga sembarang orang bisa ceritain ke teman temannya, hanya orang tertentu yang "kamu" percaya, salah satunya aku.
+        Aku tau "Aya" kalau cerita itu capek karena harus ngejelasin dari awal lagi buat nyeritain. Makasih udah mau bertahan karena aku ga kebayang sedihnya waktu "Aya" tau kebenarannya, you have been through a difficult way.
+        <br><br>
+        "kamu kalau mau p*t*s sama aku gapapa kok kalau ninggalin aku" HEYYYY HEYYY HOLD ON A SEC. AKU TUH JUGA MENJALIN HUBUNGAN LOH SAMA "KAMU". Dan "kamu" seenak jidatnya ngomong kek gitu ke aku?
+        jadi "kamu" ngeremehin komitmenku? aku juga punya sebuah komitmen loh buat jalin hubungan sama orang yang aku cintai. aku bener bener kesel dan sedih waktu "Aya" ngomong itu. i Was shock, dia gamau aku peluk dengan alasan keretanya dah mau berangkat padahal masi sisa 20 menit lagi.
+        AKu bicara ke "dia" pelan pelan. Kok bisa? kenapa juga dia bayangin aku bakal pergi ninggalin "dia" after she tell the truth? Why would i? aku ngga seaneh itu.
+        <br><br>
+        Dari sana aku jelasin ke "dia" kalau aku tuh sayang sama "dia". Aku juga punya komitmen loh "aya", jangan seenaknya mengatakan kata yang tidak mau aku denger sama sekali. And i tell to "her" aku malah berterima kasih karena sudah nunjukkin
+        titik lemahmu padaku. Terimakasih udah mau jujur sama aku, "Aya" i really love you. "Aya" kamu akan selalu jadi wanitaku. "Jingga Naraya Putri" itu nama wanitaku, cantik kan? i really really love her🧡.
+        <br><br>
+        Aya, the girl who i love, the girl who always stay by my side when i am happy, sad, or whatever expression that i have. 
+        Life isn't easy, there is so many sucked moment but the girl who presence in front of me make my life feel colorful and aya so pretty. 
+        ahh that's true, the girl who is pretty. Having you make me comfortable to againts the world. I really love "you". 
+        <br><br>
+        Makasih udah memilihku as your boyfriend, makasih udah mempercayaiku sebagai tempatmu untuk beristirahat, tempatmu untuk bersandar, tempatmu untuk curhat, tempatmu untuk berlindung, i will become your "house".
+        I learn sincerely loved from you, you support me when i feel bad, happy, and you become my place story, a place where I can share all my worries, my safest and most comfortable 
+        place to lean on whenever I'm tired. "Aya" is a person who bring my joy back. 
+        <br><br>
+        I'm very lucky cause i meet you. I also learn a lot from my past. I wish and i hope i can treat you so well as i can. I will, nope, i never let "your" hand go from my hand. "Aya" i hope we always being good forever, even 
+        kita lagi disituasi naek turun, hope we support each other. "Keep be my Aya forever 🧡".
+        <br><br>
+        Hmmm ceritanya udah sampe sini karena masih akan berlanjut sampe seterusnya. sebenernya masi banyak cerita yang mo aku sampein tapi ini udah terlalu panjang? takut "Aya" bosen dengerin yappingku.
+        Perasaanku bahagia waktu aku nulis ini sayang 🧡
+        <br><br>
+        Ohh i also do some list for us too! check it out!
+    </div>
+</section>
+
+<!-- TO-DO LIST -->
+<section>
+    <h2 class="todo-title">To Do List Aya & Ica di 2026 sampe seterusnya 🍊💕</h2>
+
+    <div class="todo-container">
+        <div class="todo-card">✈️ Traveling bareng (Dalam negeri, luar negeri)</div>
+        <div class="todo-card">🌹  Menyusun bricks bunga bareng</div>
+        <div class="todo-card">🎙️  Nonton konser bareng (Tenxi & Hindia)</div>
+        <div class="todo-card">👨🏻‍🎓👩🏻‍🎓 Yudisium dan Wisuda bareng</div>
+        <div class="todo-card">🎓 Lulus dengan IPK yang memuaskan bareng</div>
+        <div class="todo-card">📙 Tukeran Novel (Review Novel bareng)</div>
+        <div class="todo-card">🏎️ Nonton f1 bareng</div>
+        <div class="todo-card">👩🏻‍🍳 Masak bareng</div>
+        <div class="todo-card">🏀 Nonton NBA bareng</div>
+        <div class="todo-card">🏆 Sukses bareng</div>
+        <div class="todo-card">🤸 Olahraga di lapangan UMM</div>
+        <div class="todo-card">🍿 Nonton film bareng even itu via online</div>
+        <div class="todo-card">🧠 Growth bareng baik dari knowledge even karir</div>
+        <div class="todo-card">🌺 Ngerangkai bucket bunga lagi</div>
+        <div class="todo-card">🎸Mengajari Aya gitar</div>
+        <div class="todo-card">🎨 Melukis bareng</div>
+        <div class="todo-card">🎌 Go to japan</div>
+        <div class="todo-card">❄️ Melihat salju pertama kalinya bareng</div>
+        <div class="todo-card">🎉🎂 Merayakan ulang tahun bareng</div>
+        <div class="todo-card">🌴🌊 Liburan bareng ke bali</div>
+        <div class="todo-card">👩🏻‍❤️‍👨🏻 Menjadi versi yang lebih baik dari sebelumnya</div>
+        <div class="todo-card">👩🏻‍❤️‍👨🏻 Stay by my side forever</div>
+        <div class="todo-card">DAN MASIH BANYAK LAGI SAYANG AKU PENGEN NGELAKUIN HAL SAMA AYA🧡</div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+    <h2 style="text-align:center;">Kenangan Aya & Ica September 2025 📸</h2>
+    <p style="text-align:center; opacity:0.8;">(sebenernya banyak foto foto kita tapi nanti kasian Google bingung gimana masukin foto fotonya sangking banyaknya)</p>
+
+    <div class="gallery">
+        <img src="E:\aya\september.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.30.25 (2).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 15.27.29 (1).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.30.25.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.30.25 (3).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 15.27.29.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+
+    </div>
+</section>
+<section>
+    <h2 style="text-align:center;">Kenangan Aya & Ica Oktober 2025 📸</h2>
+    <div class="gallery">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.34.39.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.34.39 (1).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.34.39 (2).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 10.34.39 (3).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 13.59.20.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 14.06.29.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+    </div>
+</section>
+<section>
+    <h2 style="text-align:center;">Kenangan Aya & Ica November 2025 📸</h2>
+
+    <div class="gallery">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.13.27.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.13.44.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.14.51.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.15.45.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 13.59.20 (3).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 13.59.20 (4).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+    </div>
+</section>
+<section>
+    <h2 style="text-align:center;">Kenangan Aya & Ica Desember 2025 📸</h2>
+
+    <div class="gallery">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 13.59.20 (5).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-30 at 13.59.20 (6).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.30.36 (1).jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.30.36.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.30.37.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+        <img src="E:\aya\WhatsApp Image 2025-12-29 at 11.30.39.jpeg" style="width:100%; height:160px; object-fit:cover; border-radius:20px;">
+    </div>
+</section>
+<!-- LOVE BUTTON SPECIAL -->
+<section style="text-align:center;">
+    <h2>A Message for my beloved girl Aya in 2026🧡</h2>
+    <p>Hey Aya, makasih sudah sudah memilih Ica sebagai pacarmu. Makasih sudah memilih Ica sebagai tempat bersandarmu. I love you dear. Aku happy banget
+        waktu kamu nyamperin aku jadi LO, disitu ak ngerasa capek tapi "Aya" ada untuk aku. Aku tetep butuh support dari "Aya". I'm Happy to be a man who always
+        support you. I will treat you a well as long that i can. Makasih buat Papah, Mamah, and keluarga "Aya" yang sekarang
+    </p>
+
+    <div class="love-btn" onclick="showPopup()">CLICK HERE IF AYA CURIOUS 💕</div>
+</section>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <h3>Our star will be shine together⭐★</h3>
+    <p style="font-weight:500;"> Stay by my side as always and forever until we eat uniqorn meat.</p>
+    <button class="close-btn" onclick="closePopup()">Tutup</button>
+</div>
+
+<script>
+    function showPopup() {
+        document.getElementById("popup").classList.add("active");
+    }
+
+    function closePopup() {
+        document.getElementById("popup").classList.remove("active");
+    }
+</script>
+
+</body>
+</html>
